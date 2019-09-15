@@ -14,6 +14,7 @@ const initialState = {
 			{
 				title: "Megcsinalni a hazit",
 				done: false,
+				id: 0,
 			},
 		],
 		
@@ -22,10 +23,12 @@ const initialState = {
 			{
 				title: "bebaszni",
 				done: false,
+				id: 1,
 			},
 			{
 				title: "Kristofnak atkuldeni a beadandot",
 				done: false,
+				id: 2,
 			},
 		],
 	},
@@ -51,13 +54,14 @@ const initialState = {
 			let { items } = state;
 			let searchedIndex = null;
 			
+			
 			for (let prop in items) 
 			{
 				if (Object.prototype.hasOwnProperty.call(items, prop)) 
 				{
 					items[prop].map((item, index) =>
 					{						
-						if (item.title === action.payload) searchedIndex = index;
+						if (item.id === action.payload) searchedIndex = index;
 					}
 					);
 				}
@@ -93,5 +97,5 @@ const initialState = {
 	}
   }
   
-  export default todos;
+  export {initialState, todos as default};
   

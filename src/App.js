@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { connect } from "react-redux"
+import { DragDropContext, Draggable, Droppable  } from "react-beautiful-dnd";
 
 import './App.css';
-import CardContainer from "./components/CardContainer";
+import CardContainer from "./components/TodoListContainer";
+import Asad from "./ASsdasdasdasda";
 
 // const NavBar = () => (
 //   <div className="navbar">
@@ -43,10 +45,12 @@ class App extends Component {
   }
   
   render() {
-    console.log(this.props.items)
     return (
       // <BrowserRouter>
-        <CardContainer />
+      // <ASsdasdasdasda />
+      <Asad />
+        //  <CardContainer /> 
+
         // {/* <div>
         // <ul id="taskContainer">
         //   {items}
@@ -57,19 +61,11 @@ class App extends Component {
         //   <Route exact path="/" component={CurrentTasks}/>
         //   <Route path="/completed" component={CompletedTasks}/>
         // </div> */}
-      // </BrowserRouter>
+        // {/* // </BrowserRouter> */}
     );
   }
 }
 
-const mapStateToProps = ({ todos }) => (
-	{
-		items: todos.items
-	}
-);
-
-export default connect(
-	mapStateToProps,
-	null
-  )(App)
+export default
+  (App)
 // export default App;
