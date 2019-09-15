@@ -72,12 +72,22 @@ export default class App extends Component {
      * the IDs of the droppable container to the names of the
      * source arrays stored in the state.
      */
-    id2List = {
-        droppable: 'items',
-        droppable2: 'selected',
-        droppable3: 'asd',
-        droppable4: 'siker'
-    };
+
+    id2List = {};
+
+    componentDidMount()
+    {
+        let id = 0;
+        for (let prop in this.state)
+        {
+            this.id2List = { ...this.id2List, [`droppable${id}`]:  prop}
+            id++;
+        }
+        let sadsda = this.id2List;
+        debugger;
+    }
+    
+    
 
     getList = id => this.state[this.id2List[id]];
 
@@ -118,7 +128,7 @@ export default class App extends Component {
                 tmpArr.push(prop); 
                 ci++;
             }
-            debugger;
+            // debugger;
             
             this.setState({
                 [this.id2List[destination.droppableId]]: res[tmpArr[1]],
@@ -161,16 +171,17 @@ export default class App extends Component {
       </Droppable>)
     }
 
+    
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
               <div style={{display: "flex"}}>
-                {this.renderDroppable("droppable", this.state.items)}         
-                {this.renderDroppable("droppable2", this.state.selected)}
-                {this.renderDroppable("droppable3", this.state.asd)}         
-                {this.renderDroppable("droppable4", this.state.siker)}         
+                {this.renderDroppable("droppable0", this.state.items)}         
+                {this.renderDroppable("droppable1", this.state.selected)}
+                {this.renderDroppable("droppable2", this.state.asd)}         
+                {this.renderDroppable("droppable3", this.state.siker)}         
               </div>
             </DragDropContext>
         );
