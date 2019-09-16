@@ -46,7 +46,6 @@
     margin: 0 4px;
     height: 100%;
     box-sizing: border-box;
-    display: inline-block;
     vertical-align: top;
     white-space: nowrap;
 }
@@ -54,18 +53,23 @@
 
 .todoContainer 
 {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    width: "100%";
+    margin-right: 1%;
+    border-color: #55acee;
+    border-width: 2px;
 }
 
-.removeTodo 
+.submitButton
 {
-	color: rgb(155, 61, 61);
-  
-	display: none;
-}
-
-.todoContainer:hover .removeTodo 
-{
-	display: block;
+    margin-top: 16px;
+    background-color: #55acee;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    height: 0.2%;
 }

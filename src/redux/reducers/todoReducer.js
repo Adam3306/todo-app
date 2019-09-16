@@ -2,36 +2,44 @@ import {
 	ADD_NEW_TODO,
 	DEL_TODO,
 	ADD_NEW_LIST,
-	DEL_LIST
+	DEL_LIST,
+	SET_TODOS
 } from "../types";
 
 const initialState = {
 	items: 
 	{
 			
-		"Hazimiunka":
+		"TODO":
 		[
 			{
-				title: "Megcsinalni a hazit",
-				done: false,
-				id: 0,
+				content: "Drink a coffee",
+				id: "0",
+				// done: false,
 			},
 		],
 		
-		"Suli":
+		"INPROGRESS":
 		[
 			{
-				title: "bebaszni",
-				done: false,
-				id: 1,
+				content: "This is some hopeful text",
+				id: "1",
 			},
 			{
-				title: "Kristofnak atkuldeni a beadandot",
-				done: false,
-				id: 2,
+				content: "To remove a todo just drop it to the universe",
+				id: "2",
+			},
+		],
+
+		"DONE":
+		[
+			{
+				content: "This task is done",
+				id: "3",
 			},
 		],
 	},
+	m_ID: 4,
 	isFetchingTodos: false,
 	isErrorFetchingTodos: false,
 	submitting: {},
@@ -43,41 +51,33 @@ const initialState = {
 	{
 		case ADD_NEW_TODO:
 		{
-			let tmp = state.items[action.target].push(action.payload);
+			state.items[action.target].push(action.payload);
+			state.m_ID++;
 			return {
 				...state,				
-				items: {...state.items, ...tmp}
+			}
+		}
+		case SET_TODOS:
+		{
+			let tmpItems = state.items;
+			tmpItems[action.target] = action.source;
+			
+			return {
+				...state,
+				items: {...tmpItems}
 			}
 		}
 		case DEL_TODO:
 		{
-			let { items } = state;
-			let searchedIndex = null;
+			state.items[action.target].splice(action.index, 1);		
 			
-			
-			for (let prop in items) 
-			{
-				if (Object.prototype.hasOwnProperty.call(items, prop)) 
-				{
-					items[prop].map((item, index) =>
-					{						
-						if (item.id === action.payload) searchedIndex = index;
-					}
-					);
-				}
-			}
-
-			if (searchedIndex != null)
-			{
-				items[action.target].splice(searchedIndex, 1);		
-			}
-
 			return {
 				...state,	
 			}
 		}
 		case ADD_NEW_LIST:
 		{
+			console.log(ADD_NEW_LIST)
 			state.items[action.payload] = [];
 			return {
 				// items: {...state.items, action.payload: []}
